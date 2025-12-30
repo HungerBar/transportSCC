@@ -87,7 +87,7 @@ def create_2d_map_with_china_cities(
             pt = row.geometry.representative_point()
             ax.text(pt.x, pt.y, row["name"], fontsize=6, ha="center")
 
-    plt.title("SCC Cities", fontsize=18)
+    plt.title('" SCCs " Cities', fontsize=18)
     plt.savefig(output_png, dpi=300, bbox_inches="tight")
     plt.close()
 
@@ -95,8 +95,8 @@ def create_2d_map_with_china_cities(
 
 
 if __name__ == "__main__":
-    data_geojson = ""  # 使用数据(SCCs / Islands)
-    city_basemap_geojson = ""  # 底图数据
-    output_png = ""
+    data_geojson = "scc/scc1.geojson"  # 使用数据(SCCs / Islands)
+    city_basemap_geojson = "data/City/CN_city.geojson"  # 底图数据
+    output_png = "scc1.png"
 
     create_2d_map_with_china_cities(data_geojson, city_basemap_geojson, output_png)

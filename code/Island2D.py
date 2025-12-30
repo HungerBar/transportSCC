@@ -76,12 +76,6 @@ def create_2d_map_with_china_cities(
 
     ax.set_axis_off()
 
-    # ===== 比例尺 =====
-    scalebar = ScaleBar(
-        1, units="m", dimension="si-length", location="lower left", pad=0.5
-    )
-    ax.add_artist(scalebar)
-
     # ===== 指南针 =====
     bounds = gdf.total_bounds
     cx = (bounds[0] + bounds[2]) / 2

@@ -1,0 +1,177 @@
+\documentclass[final]{beamer}
+
+% ------------------------------
+% Poster size: A1 landscape
+% ------------------------------
+\usepackage[size=a1,orientation=landscape,scale=1.25]{beamerposter}
+
+% ------------------------------
+% Packages (Chinese packages removed)
+% ------------------------------
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage{enumitem}
+% Removed: \usepackage{xeCJK}
+% Removed: \setCJKmainfont{SimHei}
+
+\begin{document}
+
+\setmainfont{Arial} % Keep Arial for English text
+
+% Increase text sizes for poster readability
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.6em}
+\newcommand{\PosterSection}{\vspace{0.8em}\LARGE\bfseries}
+
+% ------------------------------
+% Modern Dark Blue Theme
+% ------------------------------
+\definecolor{PosterBlue}{HTML}{083D77}
+\definecolor{PosterLight}{HTML}{F4F7FA}
+
+\setbeamercolor{background canvas}{bg=PosterLight}
+\setbeamercolor{block title}{fg=white,bg=PosterBlue}
+\setbeamercolor{normal text}{fg=black}
+
+
+% -----------------------------------------------------------
+% Title Banner (Dark Blue)
+% -----------------------------------------------------------
+\begin{frame}[t]
+\begin{beamercolorbox}[wd=\paperwidth,ht=6cm,center,dp=2cm]{title}
+    {\veryHuge\bfseries
+    Butterfly Model of the WWW and Its Application to China's Transportation Network}
+\end{beamercolorbox}
+
+\vspace{1.5cm}
+
+% -----------------------------------------------------------
+% 3-column layout
+% -----------------------------------------------------------
+\begin{multicols}{3}
+
+% ===========================================================
+% Column 1
+% ===========================================================
+
+\PosterSection Broder et al. (2000) "Bow-Tie" Model
+
+{\Large
+\begin{itemize}[leftmargin=1.2em]
+    \item WWW can be decomposed into SCC, IN, OUT, Tendrils, Tubes, Islands.
+    \item SCC extremely dense: any two pages reach each other in < 20 clicks.
+    \item IN, OUT, and SCC each occupy \textbf{24\%–28\%} of all nodes.
+    \item Peripheral structures have sparse or directional connectivity.
+\end{itemize}
+}
+
+\PosterSection Applications
+
+{\Large
+\begin{itemize}[leftmargin=1.2em]
+    \item Network robustness analysis
+    \item Information diffusion modeling
+    \item Optimization \& vulnerability detection
+    \item Influential in social networks, citation graphs, finance
+\end{itemize}
+}
+
+\PosterSection Data \& Redefinition
+
+{\Large
+\begin{itemize}[leftmargin=1.2em]
+    \item Data: China domestic flights + railway (OpenStreetMap)
+    \item Constructed directed transport network
+    \item Classical SCC too large due to dense infrastructure
+    \item New definitions:
+    \begin{itemize}
+        \item SCC: in/out degree $> k$
+        \item Island: degree $< m$
+    \end{itemize}
+    \item Here: $k=42,\ m=6$
+\end{itemize}
+}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.90\linewidth]{map1.png}
+\caption*{\Large Transportation Network (placeholder)}
+\end{figure}
+
+
+% ===========================================================
+% Column 2
+% ===========================================================
+
+\PosterSection SCC / Island Classification
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.95\linewidth]{map2.png}
+\caption*{\Large SCC vs Island under $(k=42,m=6)$}
+\end{figure}
+
+\PosterSection Subnetwork Visualization
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.95\linewidth]{map3.png}
+\caption*{\Large Subcomponents (IN/OUT/others)}
+\end{figure}
+
+\PosterSection Observations
+
+{\Large
+\begin{itemize}[leftmargin=1.2em]
+    \item Macau classified as Island → data reliability to investigate
+    \item SCC cities show high structural centrality
+    \item Removing any SCC city reduces global connectivity by \textbf{>30\%}
+\end{itemize}
+}
+
+
+% ===========================================================
+% Column 3
+% ===========================================================
+
+\PosterSection Implications
+
+{\Large
+\begin{itemize}[leftmargin=1.2em]
+    \item Bow-tie framework reveals macro topology
+    \item Useful for national-scale robustness evaluation
+    \item Helps design optimal resilience strategies
+\end{itemize}
+}
+
+\PosterSection Connectivity Loss
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.95\linewidth]{damage_ratio.png}
+\caption*{\Large SCC Reduction vs Damage Ratio}
+\end{figure}
+
+\PosterSection Damage Impact
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.95\linewidth]{bar_damage.png}
+\caption*{\Large Impact of Individual SCC Node Removal}
+\end{figure}
+
+\PosterSection TODO / Future Work
+
+{\Large
+\begin{itemize}[leftmargin=1.2em]
+    \item Identify ideal $k$ threshold
+    \item Validate outlier cities under alternative datasets
+    \item Incorporate multi-modal \& temporal networks
+\end{itemize}
+}
+
+\end{multicols}
+\end{frame}
+
+\end{document}

@@ -41,7 +41,7 @@ def create_2d_map_with_china_cities(
     city_basemap_geojson,
     output_png,
     value_field="total_degr",
-    cmap="OrRd",
+    cmap="Blues",
     figsize=(12, 10),
 ):
 
@@ -76,6 +76,7 @@ def create_2d_map_with_china_cities(
 
     ax.set_axis_off()
 
+    # ===== 指南针 =====
     bounds = gdf.total_bounds
     cx = (bounds[0] + bounds[2]) / 2
     ty = bounds[3]
@@ -87,7 +88,7 @@ def create_2d_map_with_china_cities(
             pt = row.geometry.representative_point()
             ax.text(pt.x, pt.y, row["name"], fontsize=6, ha="center")
 
-    plt.title("SCC Cities", fontsize=18)
+    plt.title('"Islands" City', fontsize=18)
     plt.savefig(output_png, dpi=300, bbox_inches="tight")
     plt.close()
 
@@ -95,8 +96,7 @@ def create_2d_map_with_china_cities(
 
 
 if __name__ == "__main__":
-    data_geojson = ""  # 使用数据(SCCs / Islands)
-    city_basemap_geojson = ""  # 底图数据
-    output_png = ""
-
+    data_geojson = "island/island.geojson"
+    city_basemap_geojson = "data/City/CN_city.geojson"  # 底图数据
+    output_png = "island1.png"
     create_2d_map_with_china_cities(data_geojson, city_basemap_geojson, output_png)
